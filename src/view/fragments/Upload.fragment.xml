@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	<Dialog
+            id="UploadDialog" 
+            title="Table_Name"
+            class="sapUiPopupWithPadding">
+		<content>
+			<u:FileUploader
+      id="fileUploader"
+       uploadUrl="/siemens/COMMON_DEV/xs/services/dataDictionary/datadictionaryupload.xsjs"
+      name="myFileUpload"
+      width="50rem"
+      tooltip="{i18n>uploadTooltip}"
+      typeMissmatch="handleTypeMissmatch"
+      style="Emphasized"
+      fileType="csv,xls,xlsx"
+    	uploadComplete="handleUploadComplete"
+      placeholder="{i18n>fileSelect}"/>
+		</content>
+		<beginButton>
+			<Button 
+                        text="{i18n>Upload}" 
+                        press="handleUploadPress" />
+		</beginButton>
+		<endButton>
+			<Button 
+                        text="{i18n>Close}" 
+                        press="onCloseUpload" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

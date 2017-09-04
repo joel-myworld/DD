@@ -1,0 +1,7 @@
+**/Shell*.js
+**/src/test-resources/test-files/*.js
+**/src/test-resources/test-files/controller/*.js
+**/src/test-resources/integration/*.js
+**/src/test-resources/integration/commons/*.js
+**/src/test-resources/*.js
+**/test/**

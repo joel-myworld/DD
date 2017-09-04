@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc:View controllerName="com.siemens.datadictionary.controller.Main"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<Page id="page" busy="false" busyIndicatorDelay="{mainView&gt;/delay}"
+		navButtonPress="onNavBack" showNavButton="true" title="{i18n&gt;appTitle}">
+		<content>
+		
+			<Panel headerText="{i18n&gt;SelectionCriteria}" width="100%"
+				height="auto" expandable="true" expanded="true">
+				<l:Grid defaultSpan="L1 M4 S6" class="sapUiSmallMargin">
+					<Label id="lblCombo" visible="true" text="{i18n&gt;Schema}"
+						textAlign="Right" required="true" class="sapUiTinyMarginTop"
+						width="auto" />
+					<ComboBox id="idSchema"
+						items="{/Schema}"
+						selectionChange="onSchemaSelect">
+						<items>
+							<core:Item key="{SCHEMA_NAME}" text="{SCHEMA_NAME}" />
+						</items>
+						<layoutData>
+							<l:GridData span="L3 M2 S4" />
+						</layoutData>
+					</ComboBox>
+
+					<Label id="lblComboType" visible="false" text="{i18n&gt;Type}"
+						textAlign="Right" required="true" class="sapUiTinyMarginTop" />
+					<ComboBox id="cbxType" selectionChange="CbxSelectType"
+						visible="false">
+						<items>
+							<core:Item key="table" text="{i18n>Table}" />
+							<core:Item key="view" text="{i18n>View}" />
+						</items>
+						<layoutData>
+							<l:GridData span="L3 M2 S4" />
+						</layoutData>
+					</ComboBox>
+
+					<Label id="lblSelect" visible="false" text="" textAlign="Right"
+						required="true" class="sapUiTinyMarginTop" />
+					<Input id="tableName" visible="false" showValueHelp="true"
+						valueHelpRequest="handleValueHelp" width="auto">
+						<layoutData>
+							<l:GridData span="L3 M2 S4" />
+						</layoutData>
+					</Input>
+
+				</l:Grid>
+			</Panel>
+			<!-- </content> -->
+
+			<!-- </Panel> <Panel id="displayPanel" headerText="{i18n>DisplayData}" 
+				width="100%" height="auto" expandable="false" expanded="true" visible="false"> 
+				<content> -->
+			<IconTabBar id="tabBarDetails" visible="true"
+				select="handleIconTabBarSelect" backgroundDesign="Transparent"
+				expanded="true" class="tabPosition">
+				<items>
+					<IconTabFilter id="tabFields" text="{i18n&gt;Fields}"
+						icon="sap-icon://table-view" key="Fields" count="{mainDataXsjs&gt;/count}">
+						<Table id="tableFields" class="sapUiSizeCompact"
+							items="{mainDataXsjs&gt;/bindingData}">
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;Field}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;DataType}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;Length}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;Scale}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;Nullable}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;DefaultValue}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true"
+									hAlign="Center">
+									<Text text="{i18n&gt;Comments}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{mainDataXsjs&gt;COLUMN_NAME}" wrapping="true" />
+										<Text text="{mainDataXsjs&gt;DATA_TYPE_NAME}" wrapping="true" />
+										<Text text="{mainDataXsjs&gt;LENGTH}" wrapping="true" />
+										<Text text="{mainDataXsjs&gt;SCALE}" wrapping="true" />
+										<Text text="{mainDataXsjs&gt;IS_NULLABLE}" wrapping="true" />
+										<Text text="{mainDataXsjs&gt;DEFAULT_VALUE}" wrapping="true" />
+										<Text text="{mainDataXsjs&gt;COMMENTS}" wrapping="true" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter id="tabData" text="{i18n&gt;Entries}"
+						icon="sap-icon://table-chart" key="Data">
+						<ScrollContainer vertical="true" >
+						
+						<Table id="idInfoProvTable" fixedLayout="false"
+							columns="{mainDataXsjs&gt;/bindingData}" selectionChange="onSelectionChange"
+							enableBusyIndicator="true">
+
+							<headerToolbar>
+								<Toolbar>
+									<Input id="offSet" type="Text" placeholder="Offset e.g.=10"
+										maxLength="3" width="10%" />
+									<Input id="maxRow" type="Text" placeholder="Max Rows e.g.=10"
+										maxLength="3" width="10%" />
+									<ToolbarSpacer />
+
+									<Input id="queryString" type="Text"
+										placeholder="Enter Query String e.g.MATERIAL='1' " />
+									<Button icon="sap-icon://search" text="{i18n>Filter}" press="onFilter" />
+									<ToolbarSpacer />
+									<Button icon="sap-icon://refresh" press="onRefresh" />
+									<Button icon="sap-icon://add" text="{i18n>Add}" press="onAddEntry"
+										visible="{mainView&gt;/tableOperation}" />
+									<Button icon="sap-icon://save" text="{i18n>Update}" press="onUpdate" id="update"
+										visible="{mainView&gt;/tableOperation}" />
+									<Button icon="sap-icon://delete" text="{i18n>Delete}" press="onDelete"
+										visible="{mainView&gt;/tableOperation}" />
+									<Button icon="sap-icon://upload" press="onUpload"
+										visible="{mainView&gt;/tableOperation}" />
+									<Button icon="sap-icon://download" press="onDownload" />
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" 
+									hAlign="Center">
+									<Text text="{mainDataXsjs&gt;COLUMN_NAME}"/>
+								</Column>
+
+							</columns>
+						</Table>
+						</ScrollContainer>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			<!-- </content> </Panel> -->
+		
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+                <Text
+                        text="{i18n>copyright}"/>
+                <Link
+                        text="{i18n>version}"
+                        target="_blank"
+                        href="https://wiki.siemens.com/x/u4W4Aw"/>
+                </contentLeft>
+				<contentRight>
+					<Button text="{i18n>Clear}" type="Emphasized" press="onReset" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+
+</mvc:View>

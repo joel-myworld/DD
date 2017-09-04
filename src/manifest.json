@@ -1,0 +1,84 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "com.siemens.datadictionary",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": "com.siemens.datadictionary.view.App",
+		"dependencies": {
+			"minUI5Version": "1.28",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.siemens.datadictionary.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"config": {
+			"schemaName": [
+				"PS_COMMON_DEV"
+			],
+			"i18nBundle": "com.siemens.datadictionary.i18n.i18n",
+			"serviceUrl": "/siemens/COMMON_DEV/xs/services/dataDictionary/datadictionary.xsodata",
+			"serviceUrlXsjs": "/siemens/COMMON_DEV/xs/services/dataDictionary/datadictionary.xsjs?",
+			"fullWidth": "true"
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.siemens.datadictionary.view",
+				"controlId": "app",
+				"controlAggregation": "pages"
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "mainView",
+					"target": "mainView"
+				}
+			],
+			"targets": {
+				"mainView": {
+					"viewName": "Main",
+					"viewId": "Main",
+					"viewLevel": 1
+				}
+			}
+		}
+	}
+}

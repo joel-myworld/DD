@@ -1,0 +1,22 @@
+.sapMListTbl .sapMText, .sapMListTbl .sapMLabel {
+    padding-top: 1px;
+    font-size: 0.70rem !important;
+    color: #333333;
+    font-weight: normal;
+}
+
+.sapUiFormResLayout>div {
+	background-color: rgba(255,255,255,0) !important;
+}
+
+.sapMPanelBG {
+    background-color: rgba(255,255,255,0) !important;
+}
+
+.sapMPanelContent {
+    padding: 0 !important;
+}
+
+.tabPosition{
+	position: relative !important;
+}

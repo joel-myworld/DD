@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog id="viewDialog" title="{i18n>Views}"
+		class="sapUiPopupWithPadding" items="{/Views}" search="handleValueHelpSearch"
+		confirm="handleValueHelpClose">
+		<StandardListItem iconDensityAware="false" iconInset="false"
+			title="{VIEW_NAME}" />
+	</SelectDialog>
+</core:FragmentDefinition>

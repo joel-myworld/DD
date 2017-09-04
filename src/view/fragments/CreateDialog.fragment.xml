@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"  xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>newEntryText}">
+	<l:Grid
+    defaultSpan="L12 M12 S12"
+    width="30rem">
+    <l:content>
+      
+      
+    </l:content>
+  </l:Grid>
+  <beginButton> <Button text="{i18n>Cancel}" press="onclose" /></beginButton>
+  <endButton> <Button text="{i18n>Add}" press="onCreateEntry"  /> </endButton>
+   </Dialog>
+</core:FragmentDefinition>
